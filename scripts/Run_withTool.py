@@ -22,9 +22,10 @@ parser.add_option("-w", "--overwrite", action='store_true', default=False, help=
 # input configuration
 parser.add_option("--dataSource", help="undefined=-1, data=0, FullSim=1, AF-II=2 ", type="int", default=1)
 parser.add_option("--doLC", dest='doLC', action='store_true', help="Use LC Weights", default=False )
-parser.add_option("--doClusterInfo", dest='doClusterInfo', action='store_true', help="Store all cluster info", default=False )
+parser.add_option("--doClusterInfo", dest='doClusterInfo', action='store_true', help="Store all cluster info for each jet", default=False )
 parser.add_option("--doJetReclustering", dest='doJetReclustering', action='store_true', help="Make custom jets", default=False )
 parser.add_option("--doTracks", dest='doTracks', action='store_true', help="Store track info", default=False )
+parser.add_option("--doAllClusters", dest='doAllClusters', action='store_true', help="Store all cluster info from event", default=False )
 
 (options, args) = parser.parse_args()
 
@@ -110,6 +111,7 @@ analysis = ROOT.JetLearningAnalysis()
 
 setattr(analysis, 'm_doLC', options.doLC)
 setattr(analysis, 'm_doClusterInfo', options.doClusterInfo)
+setattr(analysis, 'm_doAllClusters', options.doAllClusters)
 setattr(analysis, 'm_doJetReclustering', options.doJetReclustering)
 if not options.doJetReclustering: setattr(analysis,'m_jets','AntiKt4EMTopoJets')
 setattr(analysis,'m_doTracks',options.doTracks)

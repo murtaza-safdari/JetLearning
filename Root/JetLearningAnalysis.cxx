@@ -346,13 +346,14 @@ EL::StatusCode JetLearningAnalysis :: execute ()
   m_cltime.clear();
   // m_cllatwidth.clear();
   // m_cllongwidth.clear();
-
-  for(const auto clust: *in_clusters){
-    m_clpt.push_back(clust->pt()*0.001);
-    m_cleta.push_back(clust->eta());
-    m_clphi.push_back(clust->phi());
-    m_clm.push_back(clust->m());
-    m_cltime.push_back(clust->time());
+  if(m_doAllClusters){
+    for(const auto clust: *in_clusters){
+      m_clpt.push_back(clust->pt()*0.001);
+      m_cleta.push_back(clust->eta());
+      m_clphi.push_back(clust->phi());
+      m_clm.push_back(clust->m());
+      m_cltime.push_back(clust->time());
+    }
   }
 
   //PV

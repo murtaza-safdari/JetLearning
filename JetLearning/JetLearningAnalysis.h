@@ -33,6 +33,7 @@ public:
   bool m_debug = false;
   bool m_doLC = false;
   bool m_doClusterInfo = false;
+  bool m_doAllClusters = false;
   bool m_doJetReclustering = false;
   bool m_doTracks = false;
 
