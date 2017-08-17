@@ -75,8 +75,9 @@ public:
   std::vector<std::vector<float> > m_j0_cleta; //!
   std::vector<std::vector<float> > m_j0_clphi; //!
   std::vector<std::vector<float> > m_j0_clm; //!
-  std::vector<std::vector<float> > m_j0_cllatwidth; //!
-  std::vector<std::vector<float> > m_j0_cllongwidth; //!
+  std::vector<std::vector<float> > m_j0_cltime; //!
+  // std::vector<std::vector<float> > m_j0_cllatwidth; //!
+  // std::vector<std::vector<float> > m_j0_cllongwidth; //!
 
   std::vector<float> m_j0sumpt5; //!
   std::vector<float> m_j0sumpt10; //!
@@ -91,8 +92,9 @@ public:
   std::vector<float> m_cleta; //!
   std::vector<float> m_clphi; //!
   std::vector<float> m_clm; //!
-  std::vector<float> m_cllatwidth; //!
-  std::vector<float> m_cllongwidth; //!
+  std::vector<float> m_cltime; //!
+  // std::vector<float> m_cllatwidth; //!
+  // std::vector<float> m_cllongwidth; //!
 
   std::vector<float> m_tj0pt; //!
   std::vector<float> m_tj0eta; //!

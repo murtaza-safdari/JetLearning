@@ -81,8 +81,9 @@ JetLearningAnalysis :: JetLearningAnalysis () :
   m_j0_cleta{ARRAY_INIT},
   m_j0_clphi{ARRAY_INIT},
   m_j0_clm{ARRAY_INIT},
-  m_j0_cllatwidth{ARRAY_INIT},
-  m_j0_cllongwidth{ARRAY_INIT},
+  m_j0_cltime{ARRAY_INIT},
+  // m_j0_cllatwidth{ARRAY_INIT},
+  // m_j0_cllongwidth{ARRAY_INIT},
   m_j0_trkpt{ARRAY_INIT},
   m_j0_trketa{ARRAY_INIT},
   m_j0_trkphi{ARRAY_INIT},
@@ -101,8 +102,9 @@ JetLearningAnalysis :: JetLearningAnalysis () :
   m_cleta{ARRAY_INIT},
   m_clphi{ARRAY_INIT},
   m_clm{ARRAY_INIT},
-  m_cllatwidth{ARRAY_INIT},
-  m_cllongwidth{ARRAY_INIT},
+  m_cltime{ARRAY_INIT},
+  // m_cllatwidth{ARRAY_INIT},
+  // m_cllongwidth{ARRAY_INIT},
   m_tj0pt{ARRAY_INIT},
   m_tj0eta{ARRAY_INIT},
   m_tj0phi{ARRAY_INIT},
@@ -195,8 +197,9 @@ EL::StatusCode JetLearningAnalysis :: initialize ()
   m_tree->Branch("j0_cleta","std::vector<std::vector<float> >", &m_j0_cleta);
   m_tree->Branch("j0_clphi","std::vector<std::vector<float> >", &m_j0_clphi);
   m_tree->Branch("j0_clm","std::vector<std::vector<float> >", &m_j0_clm);
-  m_tree->Branch("j0_cllatwidth","std::vector<std::vector<float> >", &m_j0_cllatwidth);
-  m_tree->Branch("j0_cllongwidth","std::vector<std::vector<float> >", &m_j0_cllongwidth);
+  m_tree->Branch("j0_cltime","std::vector<std::vector<float> >", &m_j0_cltime);
+  // m_tree->Branch("j0_cllatwidth","std::vector<std::vector<float> >", &m_j0_cllatwidth);
+  // m_tree->Branch("j0_cllongwidth","std::vector<std::vector<float> >", &m_j0_cllongwidth);
 
   m_tree->Branch("j0_trkpt","std::vector<std::vector<float> >", &m_j0_trkpt);
   m_tree->Branch("j0_trketa","std::vector<std::vector<float> >", &m_j0_trketa);
@@ -218,8 +221,9 @@ EL::StatusCode JetLearningAnalysis :: initialize ()
   m_tree->Branch("cleta","std::vector<float>", &m_cleta);
   m_tree->Branch("clphi","std::vector<float>", &m_clphi);
   m_tree->Branch("clm","std::vector<float>", &m_clm);
-  m_tree->Branch("cllatwidth","std::vector<float>", &m_cllatwidth);
-  m_tree->Branch("cllongwidth","std::vector<float>", &m_cllongwidth);
+  m_tree->Branch("cltime","std::vector<float>", &m_cltime);
+  // m_tree->Branch("cllatwidth","std::vector<float>", &m_cllatwidth);
+  // m_tree->Branch("cllongwidth","std::vector<float>", &m_cllongwidth);
 
   m_tree->Branch("tj0pt","std::vector<float>", &m_tj0pt);
   m_tree->Branch("tj0eta","std::vector<float>", &m_tj0eta);
@@ -308,8 +312,9 @@ EL::StatusCode JetLearningAnalysis :: execute ()
   m_j0_cleta.clear();
   m_j0_clphi.clear();
   m_j0_clm.clear();
-  m_j0_cllatwidth.clear();
-  m_j0_cllongwidth.clear();
+  m_j0_cltime.clear();
+  // m_j0_cllatwidth.clear();
+  // m_j0_cllongwidth.clear();
 
   m_j0_trkpt.clear();
   m_j0_trketa.clear();
@@ -338,16 +343,17 @@ EL::StatusCode JetLearningAnalysis :: execute ()
   m_cleta.clear();
   m_clphi.clear();
   m_clm.clear();
-  m_cllatwidth.clear();
-  m_cllongwidth.clear();
-  /*
+  m_cltime.clear();
+  // m_cllatwidth.clear();
+  // m_cllongwidth.clear();
+
   for(const auto clust: *in_clusters){
     m_clpt.push_back(clust->pt()*0.001);
     m_cleta.push_back(clust->eta());
     m_clphi.push_back(clust->phi());
     m_clm.push_back(clust->m());
+    m_cltime.push_back(clust->time());
   }
-  */
 
   //PV
   const xAOD::Vertex *pv = 0;
@@ -478,23 +484,26 @@ EL::StatusCode JetLearningAnalysis :: execute ()
       std::vector<float> cleta;
       std::vector<float> clphi;
       std::vector<float> clm;
-      std::vector<float> cllatwidth;
-      std::vector<float> cllongwidth;
+      std::vector<float> cltime;
+      // std::vector<float> cllatwidth;
+      // std::vector<float> cllongwidth;
       for(auto constit: jet->getConstituents()){
         clpt.push_back(constit->pt()*0.001);
         cleta.push_back(constit->eta());
         clphi.push_back(constit->phi());
         clm.push_back(constit->m());
-        cllatwidth.push_back(constit->auxdata<float>("LATERAL"));
-        cllongwidth.push_back(constit->auxdata<float>("LONGITUDINAL"));
+        cltime.push_back(constit->auxdata<float>("time"));
+        // cllatwidth.push_back(constit->auxdata<float>("LATERAL"));
+        // cllongwidth.push_back(constit->auxdata<float>("LONGITUDINAL"));
         //std::cout << constit->pt()*0.001 << ";" << constit->eta() << ";" << constit->phi() << std::endl;
       }
       m_j0_clpt.push_back(clpt);
       m_j0_cleta.push_back(cleta);
       m_j0_clphi.push_back(clphi);
       m_j0_clm.push_back(clm);
-      m_j0_cllatwidth.push_back(cllatwidth);
-      m_j0_cllongwidth.push_back(cllongwidth);
+      m_j0_cltime.push_back(cltime);
+      // m_j0_cllatwidth.push_back(cllatwidth);
+      // m_j0_cllongwidth.push_back(cllongwidth);
     }
 
     CalcAnnulus(jet);

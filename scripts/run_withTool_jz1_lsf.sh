@@ -1,11 +1,12 @@
 #!/bin/bash
 python JetLearning/scripts/Run_withTool.py \
-    --submitDir "JetLearningOut/JZ1_EM_PileupJets_deltaRpt" \
+    --submitDir "JetLearningOut/HL_JZ1_EM_PileupJets" \
     -w \
     --doClusterInfo \
     --doTracks \
+    --doJetReclustering \
     --inputFileList \
-    --inputFiles mc15_13TeV.361021.JZ1W.e3569_s2576_s2132_r6765_r6282.filelist.txt \
+    --inputFiles user.cdelitzs.147911.Pythia8_AU2CT10_jetjet_JZ1W.recon.DAOD_Trimming.e2403_s3142_s3143_r9589_v0_StreamAOD.filelist.txt \
     --files_per_job 1 \
     --driver "lsf"
 exit 0

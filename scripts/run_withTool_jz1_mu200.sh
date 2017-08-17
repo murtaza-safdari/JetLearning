@@ -2,9 +2,12 @@
 python JetLearning/scripts/Run_withTool.py \
     --submitDir "JetLearningOut/jz1_mu200_test" \
     -w \
+    --doClusterInfo \
+    --doTracks \
+    --doJetReclustering \
     --inputFileList \
-    --inputFiles "/u/at/acukierm/nfs/Voronoi_xAOD/mc15_14TeV.147911.JZ1W.e2403_s2638_s2206_r7701.filelist.txt" \
-    --nevents 10 \
+    --inputFiles user.cdelitzs.147911.Pythia8_AU2CT10_jetjet_JZ1W.recon.DAOD_Trimming.e2403_s3142_s3143_r9589_v0_StreamAOD.filelist.txt \
+    --nevents 5 \
     --files_per_job 400 \
     --driver "direct"
 exit 0
